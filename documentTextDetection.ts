@@ -23,7 +23,7 @@ const start = async () => {
 
     lines = lines.join('\n').split('\n');
 
-    console.log(lines);
+    console.log(lines.join('\n'));
   });
 };
 
