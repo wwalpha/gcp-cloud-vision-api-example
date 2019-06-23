@@ -1,0 +1,12 @@
+{
+  "name": "VisionAPI",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@firebase/app-types": "^0.4.0",
+    "@google-cloud/vision": "^1.1.2",
+    "@types/node": "^12.0.10",
+    "typescript": "^3.5.2"
+  }
+}
