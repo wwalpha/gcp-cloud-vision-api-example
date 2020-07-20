@@ -1,15 +1,13 @@
-const vision = require('@google-cloud/vision');
+import { ImageAnnotatorClient } from '@google-cloud/vision';
 
 // Creates a client
-const client = new vision.ImageAnnotatorClient();
+const client = new ImageAnnotatorClient();
 const fileName = 'documentTextDetection.png';
 
 const start = async () => {
   const results = await client.documentTextDetection(fileName);
 
-  const pages = results[0].fullTextAnnotation.pages;
-
-  pages.forEach((page: any) => {
+  results[0].fullTextAnnotation?.pages?.forEach((page: any) => {
     let lines = page.blocks
       .map((block: any, idx: number) => {
         const blockLines = getBlock(block);
@@ -30,7 +28,9 @@ const start = async () => {
 const getBlock = (block: any) => {
   const lines = block.paragraphs
     .map((paragraph: any) => {
-      const words = paragraph.words.map(({ symbols }: any) => filterSymbols(symbols)).filter((item: any) => item.length != 0);
+      const words = paragraph.words
+        .map(({ symbols }: any) => filterSymbols(symbols))
+        .filter((item: any) => item.length != 0);
 
       return words.join('');
     })
